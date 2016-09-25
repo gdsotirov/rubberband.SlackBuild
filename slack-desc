@@ -1,0 +1,11 @@
+rubberband: Rubber Band (An audio time-stretching and pitch-shifting library)
+rubberband:
+rubberband: Rubber Band Library is a high quality software library for audio
+rubberband: time-stretching and pitch-shifting. It permits changing the tempo
+rubberband: and pitch of an audio stream or recording dynamically and
+rubberband: independently of one another.
+rubberband: The package also include the simple (free) command-line utility
+rubberband: program that can be used for fixed adjustments to the speed and
+rubberband: pitch of existing audio files.
+rubberband:
+rubberband: Packaged by Georgi D. Sotirov <gdsotirov@dir.bg>
