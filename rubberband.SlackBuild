@@ -17,14 +17,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-# $Id: rubberband.SlackBuild,v 1.1 2016/09/25 10:13:40 gsotirov Exp $
+# $Id: rubberband.SlackBuild,v 1.2 2016/09/25 10:18:23 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=rubberband
 VERSION=1.8.1
-ARCH=${ARCH:-i486}
+ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
 CWD=${CWD:-`pwd`}
