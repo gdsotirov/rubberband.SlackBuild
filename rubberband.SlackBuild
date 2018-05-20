@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Slackware build script for Rubber Band Library
-# Copyright (C) 2016 Georgi D. Sotirov <gdsotirov@dir.bg>
+# Copyright (C) 2016-2018 Georgi D. Sotirov <gdsotirov@dir.bg>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,13 +17,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-# $Id: rubberband.SlackBuild,v 1.2 2016/09/25 10:18:23 gsotirov Exp $
+# $Id: rubberband.SlackBuild,v 1.3 2018/05/20 19:07:10 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=rubberband
-VERSION=1.8.1
+VERSION=1.8.2
 ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
@@ -55,7 +55,7 @@ fix_source
 
 # Fix libdir in *.pc files
 if [ "$LIBDIRSUFFIX" != "" ]; then
-  sed -i "s/\/lib/\/lib${LIBDIRSUFFIX}/" *.pc.in
+  sed -i "s/\/lib/\/lib${LIBDIRSUFFIX}/" *.pc.in || exit 4
 fi
 
 # Configure
@@ -64,16 +64,17 @@ CXXFLAGS="$SLKCFLAGS" \
 ./configure --build=${ARCH}-slackware-linux \
             --host=${ARCH}-slackware-linux \
             --prefix=/usr \
-            --libdir=/usr/lib${LIBDIRSUFFIX} || exit 4
+            --libdir=/usr/lib${LIBDIRSUFFIX} || exit 5
 
 # Build & install
-make -j4 || exit 5
+make -j4 || exit 6
+make jni || exit 61
 make DESTDIR=$PKG \
      INSTALL_LIBDIR=/usr/lib${LIBDIRSUFFIX} \
      INSTALL_VAMPDIR=/usr/lib${LIBDIRSUFFIX}/vamp \
      INSTALL_LADSPADIR=/usr/lib${LIBDIRSUFFIX}/ladspa \
      INSTALL_PKGDIR=/usr/lib${LIBDIRSUFFIX}/pkgconfig \
-     install || exit 6
+     install || exit 7
 
 # Remove static libs
 ( cd $PKG/usr/lib${LIBDIRSUFFIX}; rm -f *.a )
